@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color:#ffffffef;
+    font-family: arial;
+    background-size: cover;
+} 
+  
+.fundo{
+    height: 270px;
+    width: 540px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+}
+
+.btn1{
+    height: 20px;
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(249, 128, 0, 0.929);
+}
+
+.btn1:hover{
+    color:rgb(246, 0, 0);
+    text-decoration: none;
+}
