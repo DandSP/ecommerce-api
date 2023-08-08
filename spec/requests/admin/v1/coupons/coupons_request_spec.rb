@@ -12,7 +12,7 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
 
       it 'returns 10 coupons' do
         get url, headers: auth_header(user)
-        expect(body_json['coupons']).to contain_exactly *coupons.as_json(only: %i(id name))
+        expect(body_json['coupons']).to contain_exactly *coupons.as_json(only: %i(id name code status discount_value due_date))
       end
       
       it 'returns success status' do
@@ -28,24 +28,22 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
     let(:url) { "/admin/v1/coupons" }
 
     context "With valid params" do
-      let(:coupon_params) { {coupon: attributes_for(:coupon)}.to_json }
-
-      it 'returns success status' do
-        post url, headers: auth_header(user), params: coupon_params
-        puts response.body
-        expect(response).to have_http_status(:ok)
-      end
+      let!(:coupon_params) { { coupon: attributes_for(:coupon) }.to_json }
 
       it 'When adds a new coupon' do 
         expect do
           post url, headers: auth_header(user), params: coupon_params
         end.to change(Coupon, :count).by(1)
+      end
+
+      it 'returns success status' do
+        post url, headers: auth_header(user), params: coupon_params
         expect(response).to have_http_status(:ok)
       end
 
-      it 'returns last coupon' do
+      it 'returns last added coupon' do
         post url, headers: auth_header(user), params: coupon_params
-        last_coupon = Coupon.last.as_json(only: %i(id name))
+        last_coupon = Coupon.last.as_json(only: %i(id name code status discount_value due_date))
         expect(body_json['coupon']).to eq last_coupon
       end
 
@@ -63,6 +61,11 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
       it 'returns unprocessable_entity status' do
         post url, headers: auth_header(user), params: coupon_invalid_params
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns error messages' do
+        post url, headers: auth_header(user), params: coupon_invalid_params
+        expect(body_json['errors']['fields']).to have_key('name')
       end
 
     end

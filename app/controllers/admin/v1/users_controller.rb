@@ -25,7 +25,7 @@ module Admin::V1
       private
 
       def user_params 
-         params.require(:user).permit(:name)
+         params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :profile)
       end
 
       def load_user

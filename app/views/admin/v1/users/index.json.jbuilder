@@ -1,3 +1,3 @@
 json.users do
-    json.array! @users, :id, :name
+    json.array! @users, :id, :name, :email, :profile
 end
