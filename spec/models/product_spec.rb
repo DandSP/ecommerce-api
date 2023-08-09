@@ -17,6 +17,8 @@ RSpec.describe Product, type: :model do
 
   it_behaves_like "name searchable concern", :product
   it_behaves_like "paginatable concern", :product
+
+  
   # it { is_expected.to have_many(:wish_items).dependent(:destroy) } 
   # it { is_expected.to have_many(:user).through(:wish_items) }
 

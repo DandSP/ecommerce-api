@@ -77,7 +77,7 @@ RSpec.describe "Admin::V1::Users as :admin", type: :request do
 
 		context "with valid params" do	
 			let(:new_name) { 'Juca' }
-			let(:user_params) { {user: attributes_for(:user, name: new_name)}.to_json }
+			let(:user_params) { { user: { name: new_name } }.to_json }
 
 			it 'updates username' do
 				patch url, headers: auth_header(user), params: user_params

@@ -12,4 +12,5 @@ RSpec.describe Coupon, type: :model do
   it { is_expected.to validate_presence_of(:due_date) }
 
   it_behaves_like "paginatable concern", :coupon
+
 end 

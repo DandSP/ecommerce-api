@@ -1,6 +1,6 @@
 module Admin::V1
   class CouponsController < ApiController
-    before_action :load_category, only: [:update, :destroy]
+    before_action :load_coupon, only: [:update, :destroy]
 
     def index
       @coupons = Coupon.all
