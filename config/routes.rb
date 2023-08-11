@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :users
       resources :coupons
+      resources :system_requirements
     end
   end
 

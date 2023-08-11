@@ -133,7 +133,7 @@ RSpec.describe "Admin::V1::Users as :admin", type: :request do
 			end.to change(User, :count).by(-1)
 		end
 
-		it 'returns success status' do
+		it 'returns no_content status' do
 			delete url, headers: auth_header(user)
 			expect(response).to have_http_status(:no_content)
 		end

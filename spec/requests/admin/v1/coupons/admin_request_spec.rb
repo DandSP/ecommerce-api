@@ -134,7 +134,7 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
       end.to change(Coupon, :count).by(-1)
     end
 
-    it 'return success status' do
+    it 'return no_content status' do
       delete url, headers: auth_header(user)
       expect(response).to have_http_status(:no_content)
     end
