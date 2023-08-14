@@ -7,4 +7,5 @@ RSpec.describe License, type: :model do
   it { is_expected.to validate_presence_of(:game_id) }
   it { is_expected.to validate_uniqueness_of(:game_id).case_insensitive }
 
+  it { is_expected.to define_enum_for(:status).with_values({ available: 1, unavailable: 2 })}
 end

@@ -7,5 +7,5 @@ class Game < ApplicationRecord
 
   enum mode: { pvp: 1, pve: 2, both: 3 }
 
-  has_many :license
+  has_many :licenses
 end
