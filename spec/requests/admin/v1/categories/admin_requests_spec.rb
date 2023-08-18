@@ -161,7 +161,7 @@ RSpec.describe "Admin::V1::Categories as :admin", type: :request do
 
 		context "with valid params" do
 			let(:new_name) { 'My new category '}
-			let(:category_params) { { category: {name: new_name } }.to_json }
+			let(:category_params) { { category: { name: new_name } }.to_json }
 
 			it 'updates category' do
 				patch url, headers: auth_header(user), params: category_params

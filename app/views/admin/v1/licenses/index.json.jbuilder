@@ -1,3 +1,3 @@
 json.licenses do
-  json.array! @license, :id, :key, :status
+  json.array! @licenses, :id, :key, :status, :game_id
 end

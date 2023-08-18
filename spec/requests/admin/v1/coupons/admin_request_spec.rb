@@ -14,6 +14,12 @@ RSpec.describe "Admin::V1::Coupons as :admin", type: :request do
         get url, headers: auth_header(user)
         expect(body_json['coupons']).to contain_exactly *coupons.as_json(only: %i(id name code status discount_value due_date))
       end
+
+      it 'returns first 10 licenses' do
+        get url, headers: auth_header(user)
+        expected_coupon = coupons[0..9].as_json(only: %i(id name code status discount_value due_date))
+        expect(body_json['coupons']).to contain_exactly *expected_coupon
+      end
       
       it 'returns success status' do
         get url, headers: auth_header(user)
