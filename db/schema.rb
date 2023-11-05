@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_14_021923) do
+ActiveRecord::Schema.define(version: 2023_08_29_191733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,11 +71,6 @@ ActiveRecord::Schema.define(version: 2023_08_14_021923) do
     t.integer "status"
   end
 
-  create_table "luzs", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "product_categories", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
@@ -94,6 +89,7 @@ ActiveRecord::Schema.define(version: 2023_08_14_021923) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status"
+    t.boolean "featured", default: false
     t.index ["productable_type", "productable_id"], name: "index_products_on_productable_type_and_productable_id"
   end
 
@@ -104,12 +100,6 @@ ActiveRecord::Schema.define(version: 2023_08_14_021923) do
     t.string "processor"
     t.string "memory"
     t.string "video_board"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "teste1s", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -136,16 +126,6 @@ ActiveRecord::Schema.define(version: 2023_08_14_021923) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
-  end
-
-  create_table "weapons", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "power_base"
-    t.string "power_step"
-    t.string "level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "wish_items", force: :cascade do |t|
